@@ -59,3 +59,28 @@
 - add `"dev": "nodemon index.js"` to package.json
 - Use `npm run dev` to run nodemon
 
+## REST
+
+---
+
+### Representational State Transfer
+
+- Singular things are called *resources* with associated URLs
+- Create the URL by combining the name of the resource *type* with the resource's UID
+- Assume the URL is www.example.com/api
+- The address of a note with a UID of *10* and a resource type of *notes* would be www.example.com/api/notes/10
+- This is defined as a *Uniform Interface* in REST; a consistent way of defining interfaces makes it possible for systems to cooperate.
+
+REST route for fetching a single resource:
+
+    app.get('/api/notes/:id', (req, res) => {
+        const id = req.params.id
+        const note = notes.find(note => note.id === id)
+        res.json(note)
+    })
+
+## Debugging
+---
+The following code will print the note's value and its type to the console
+
+    console.log(note.id, typeof note.id, id, typeof id, note.id === id)

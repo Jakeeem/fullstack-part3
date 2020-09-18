@@ -15,7 +15,7 @@ let notes = [
         important: false
     },
     {
-        id: 2,
+        id: 3,
         content: "GET and Post are the most important HTML methods",
         date: new Date().toString(),
         important: true
@@ -28,6 +28,18 @@ app.get('/', (req, res) => {
 
 app.get('/api/notes', (req, res) => {
     res.json(notes)
+})
+
+// REST route for fetching single resource
+app.get('/api/notes/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const note = notes.find(note => note.id === id)
+
+    if(note){
+        res.json(note)
+    } else {
+        res.status(404).end()
+    }
 })
 
 const PORT = 3001
