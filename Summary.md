@@ -74,9 +74,14 @@
 REST route for fetching a single resource:
 
     app.get('/api/notes/:id', (req, res) => {
-        const id = req.params.id
+        const id = Number(req.params.id)
         const note = notes.find(note => note.id === id)
-        res.json(note)
+
+        if(note){
+            res.json(note)
+        } else {
+            res.status(404).end()
+        }
     })
 
 ## Debugging
@@ -84,3 +89,9 @@ REST route for fetching a single resource:
 The following code will print the note's value and its type to the console
 
     console.log(note.id, typeof note.id, id, typeof id, note.id === id)
+
+## Rest Requests
+Make `.rest` files to check requests to a URL from the comfort of VS Code!
+
+    GET http://localhost:3001/api/notes
+
